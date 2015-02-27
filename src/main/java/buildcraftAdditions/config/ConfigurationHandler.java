@@ -1,6 +1,8 @@
 package buildcraftAdditions.config;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import net.minecraftforge.common.config.Configuration;
 
@@ -19,6 +21,18 @@ public class ConfigurationHandler {
 	public static int[] powerDifficultyModifiers = new int[4];
 	public static int basePowerModifier, entityHitModifier, hoeCost, KEB1powerloss, KEB2powerloss, KEB3powerloss, heatedFurnaceHeatRequired, basicCoilHeat, lavaCoilHeat, kineticCoilHeatModifier, portableLaserPowerUse, portableLaserLaserPower, portableLaserEntityBurnTime;
 	public static float portableLaserEntityDamage, toolEfficiencyPickaxe, toolEfficiencyShovel, toolEfficiencyAxe;
+
+	private static final HashSet<String> enabledFeatures = new HashSet<String>();
+
+	public static boolean enabled(String name) {
+		return enabledFeatures.contains(name);
+	}
+
+	private static void registerFeature(String name) {
+		if (configFile.get("Feature", name, true).getBoolean()) {
+			enabledFeatures.add(name);
+		}
+	}
 
 	public static void init(File file) {
 		configFile = new Configuration(file);
@@ -64,6 +78,22 @@ public class ConfigurationHandler {
 		configFile.addCustomCategoryComment("Misc", "Stuff that didn't fit in any other category");
 		shouldRegisterDusts = configFile.get("Misc", "shouldRegisterDusts", true).setRequiresMcRestart(true).getBoolean();
 		eurekaIntegration = configFile.get("Misc", "eurekaIntegration", true).setRequiresMcRestart(true).getBoolean();
+
+		registerFeature("ChargingStation");
+		registerFeature("ColorSorter");
+		registerFeature("ColoringTool");
+		registerFeature("Duster");
+		registerFeature("FluidCanisters");
+		registerFeature("KineticBackpack");
+		registerFeature("KineticEnergyBuffer");
+		registerFeature("MachineUpgrades");
+		registerFeature("MultiBlockRefining");
+		registerFeature("MultiTools");
+		registerFeature("MultiToolsArea");
+		registerFeature("MultiToolsFortune");
+		registerFeature("MultiToolsSilky");
+		registerFeature("PortableLaser");
+		registerFeature("PowerCapsules");
 
 		if (configFile.hasChanged())
 			configFile.save();

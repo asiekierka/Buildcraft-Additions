@@ -1,5 +1,7 @@
 package buildcraftAdditions.reference;
 
+import buildcraftAdditions.config.ConfigurationHandler;
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -149,26 +151,30 @@ public final class ItemsAndBlocks {
 
 
 	public static void init() {
-		ironCanister = new ItemCanister("ironCanister", 2000);
-		GameRegistry.registerItem(ironCanister, "ironCanister");
+		if (ConfigurationHandler.enabled("FluidCanisters")) {
+			ironCanister = new ItemCanister("ironCanister", 2000);
+			GameRegistry.registerItem(ironCanister, "ironCanister");
 
-		goldCanister = new ItemCanister("goldCanister", 8000);
-		GameRegistry.registerItem(goldCanister, "goldCanister");
+			goldCanister = new ItemCanister("goldCanister", 8000);
+			GameRegistry.registerItem(goldCanister, "goldCanister");
 
-		diamondCanister = new ItemCanister("diamondCanister", 64000);
-		GameRegistry.registerItem(diamondCanister, "diamondCanister");
+			diamondCanister = new ItemCanister("diamondCanister", 64000);
+			GameRegistry.registerItem(diamondCanister, "diamondCanister");
+		}
 
-		powerCapsuleTier1 = new BatteryBase(100000, 1000, 1000, 1, "T1_battery");
-		powerCapsuleTier1.setUnlocalizedName("PowerCapsuleTier1");
-		GameRegistry.registerItem(powerCapsuleTier1, "PowerCapsuleTier1");
+		if (ConfigurationHandler.enabled("PowerCapsules")) {
+			powerCapsuleTier1 = new BatteryBase(100000, 1000, 1000, 1, "T1_battery");
+			powerCapsuleTier1.setUnlocalizedName("PowerCapsuleTier1");
+			GameRegistry.registerItem(powerCapsuleTier1, "PowerCapsuleTier1");
 
-		powerCapsuleTier2 = new BatteryBase(300000, 2000, 2000, 2, "T2_battery");
-		powerCapsuleTier2.setUnlocalizedName("PowerCapsuleTier2");
-		GameRegistry.registerItem(powerCapsuleTier2, "powerCapsuleTier2");
+			powerCapsuleTier2 = new BatteryBase(300000, 2000, 2000, 2, "T2_battery");
+			powerCapsuleTier2.setUnlocalizedName("PowerCapsuleTier2");
+			GameRegistry.registerItem(powerCapsuleTier2, "powerCapsuleTier2");
 
-		powerCapsuleTier3 = new BatteryBase(1000000, 4000, 4000, 3, "T3_battery");
-		powerCapsuleTier3.setUnlocalizedName("PowerCapsuleTier3");
-		GameRegistry.registerItem(powerCapsuleTier3, "powerCapsuleTier3");
+			powerCapsuleTier3 = new BatteryBase(1000000, 4000, 4000, 3, "T3_battery");
+			powerCapsuleTier3.setUnlocalizedName("PowerCapsuleTier3");
+			GameRegistry.registerItem(powerCapsuleTier3, "powerCapsuleTier3");
+		}
 
 		ironStick = new ItemBase("stickIron");
 		GameRegistry.registerItem(ironStick, "stickIron");
@@ -222,41 +228,49 @@ public final class ItemsAndBlocks {
 		GameRegistry.registerItem(blazeStick, "stickBlaze");
 		OreDictionary.registerOre("stickBlaze", new ItemStack(blazeStick));
 
-		toolCore = new ItemBase("toolCore");
-		GameRegistry.registerItem(toolCore, "toolCore");
+		if (ConfigurationHandler.enabled("MultiTools")) {
+			toolCore = new ItemBase("toolCore");
+			GameRegistry.registerItem(toolCore, "toolCore");
 
-		toolUpgradeHoe = new ItemToolUpgrade("Hoe");
-		GameRegistry.registerItem(toolUpgradeHoe, "toolUpgradeHoe");
+			toolUpgradeHoe = new ItemToolUpgrade("Hoe");
+			GameRegistry.registerItem(toolUpgradeHoe, "toolUpgradeHoe");
 
-		toolUpgradeDigger = new ItemToolUpgrade("Digger");
-		GameRegistry.registerItem(toolUpgradeDigger, "toolUpgradeDigger");
+			toolUpgradeDigger = new ItemToolUpgrade("Digger");
+			GameRegistry.registerItem(toolUpgradeDigger, "toolUpgradeDigger");
 
-		toolUpgradeDrill = new ItemToolUpgrade("Drill");
-		GameRegistry.registerItem(toolUpgradeDrill, "toolUpgradeDrill");
+			toolUpgradeDrill = new ItemToolUpgrade("Drill");
+			GameRegistry.registerItem(toolUpgradeDrill, "toolUpgradeDrill");
 
-		toolUpgradeChainsaw = new ItemToolUpgrade("Chainsaw");
-		GameRegistry.registerItem(toolUpgradeChainsaw, "toolUpgradeChaisaw");
+			toolUpgradeChainsaw = new ItemToolUpgrade("Chainsaw");
+			GameRegistry.registerItem(toolUpgradeChainsaw, "toolUpgradeChaisaw");
 
-		toolUpgradeArea = new ItemToolUpgrade("Area");
-		GameRegistry.registerItem(toolUpgradeArea, "toolUpgradeArea");
+			if (ConfigurationHandler.enabled("MultiToolsArea")) {
+				toolUpgradeArea = new ItemToolUpgrade("Area");
+				GameRegistry.registerItem(toolUpgradeArea, "toolUpgradeArea");
+			}
 
-		toolUpgradeSilky = new ItemToolUpgrade("Silky");
-		GameRegistry.registerItem(toolUpgradeSilky, "toolUpgradeSilky");
+			if (ConfigurationHandler.enabled("MultiToolsSilky")) {
+				toolUpgradeSilky = new ItemToolUpgrade("Silky");
+				GameRegistry.registerItem(toolUpgradeSilky, "toolUpgradeSilky");
+			}
 
-		toolUpgradeFortune1 = new ItemToolUpgrade("Fortune1");
-		GameRegistry.registerItem(toolUpgradeFortune1, "toolUpgradeFortune1");
+			if (ConfigurationHandler.enabled("MultiToolsFortune")) {
+				toolUpgradeFortune1 = new ItemToolUpgrade("Fortune1");
+				GameRegistry.registerItem(toolUpgradeFortune1, "toolUpgradeFortune1");
 
-		toolUpgradeFortune2 = new ItemToolUpgrade("Fortune2");
-		GameRegistry.registerItem(toolUpgradeFortune2, "toolUpgradeFortune2");
+				toolUpgradeFortune2 = new ItemToolUpgrade("Fortune2");
+				GameRegistry.registerItem(toolUpgradeFortune2, "toolUpgradeFortune2");
 
-		toolUpgradeFortune3 = new ItemToolUpgrade("Fortune3");
-		GameRegistry.registerItem(toolUpgradeFortune3, "toolUpgradeFortune3");
+				toolUpgradeFortune3 = new ItemToolUpgrade("Fortune3");
+				GameRegistry.registerItem(toolUpgradeFortune3, "toolUpgradeFortune3");
+			}
 
-		kineticTool = new ItemKineticTool();
-		GameRegistry.registerItem(kineticTool, "kineticMultiTool");
+			kineticTool = new ItemKineticTool();
+			GameRegistry.registerItem(kineticTool, "kineticMultiTool");
 
-		itemKineticMultiTool = new ItemKineticMultiTool();
-		GameRegistry.registerItem(itemKineticMultiTool, "itemKineticMultiTool");
+			itemKineticMultiTool = new ItemKineticMultiTool();
+			GameRegistry.registerItem(itemKineticMultiTool, "itemKineticMultiTool");
+		}
 
 		itemGrindingWheel = new ItemBase("grindingWheel");
 		GameRegistry.registerItem(itemGrindingWheel, "grindingWheel");
@@ -291,21 +305,29 @@ public final class ItemsAndBlocks {
 		dust = new ItemDust();
 		GameRegistry.registerItem(dust, "dust");
 
-		pipeColoringTool = new ItemPipeColoringTool();
-		GameRegistry.registerItem(pipeColoringTool, "pipeColoringTool");
+		if (ConfigurationHandler.enabled("ColoringTool")) {
+			pipeColoringTool = new ItemPipeColoringTool();
+			GameRegistry.registerItem(pipeColoringTool, "pipeColoringTool");
+		}
 
-		upgrade = new ItemMachineUpgrade();
-		GameRegistry.registerItem(upgrade, "upgrade");
+		if (ConfigurationHandler.enabled("MachineUpgrades")) {
+			upgrade = new ItemMachineUpgrade();
+			GameRegistry.registerItem(upgrade, "upgrade");
 
-		blankUpgrade = new ItemBase("baseUpgrade");
-		GameRegistry.registerItem(blankUpgrade, "blankUpgrade");
+			blankUpgrade = new ItemBase("baseUpgrade");
+			GameRegistry.registerItem(blankUpgrade, "blankUpgrade");
+		}
 
-		portableLaser = new ItemPortableLaser();
-		GameRegistry.registerItem(portableLaser, "portableLaser");
+		if (ConfigurationHandler.enabled("PortableLaser")) {
+			portableLaser = new ItemPortableLaser();
+			GameRegistry.registerItem(portableLaser, "portableLaser");
+		}
 
-		kineticBackpack = new KineticBackpack();
-		kineticBackpack.setUnlocalizedName("kineticBackpack");
-		GameRegistry.registerItem(kineticBackpack, "kineticBackpack");
+		if (ConfigurationHandler.enabled("KineticBackpack")) {
+			kineticBackpack = new KineticBackpack();
+			kineticBackpack.setUnlocalizedName("kineticBackpack");
+			GameRegistry.registerItem(kineticBackpack, "kineticBackpack");
+		}
 
 		//START BLOCKS
 
@@ -317,83 +339,101 @@ public final class ItemsAndBlocks {
 		kinisisPipeStone.setBlockName("kinesisPipeCobble");
 		GameRegistry.registerBlock(kinisisPipeStone, "kinesisPipeCobble");
 
-		fluidicCompressorBlock = new BlockFluidicCompressor();
-		fluidicCompressorBlock.setBlockName("blockFluidicCompressor").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(fluidicCompressorBlock, "blockFluidicCompressor");
+		if (ConfigurationHandler.enabled("FluidCanisters")) {
+			fluidicCompressorBlock = new BlockFluidicCompressor();
+			fluidicCompressorBlock.setBlockName("blockFluidicCompressor").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(fluidicCompressorBlock, "blockFluidicCompressor");
+		}
 
-		chargingStationBlock = new BlockChargingStation();
-		chargingStationBlock.setBlockName("blockChargingStation").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(chargingStationBlock, "blockChargingStation");
+		if (ConfigurationHandler.enabled("ChargingStation")) {
+			chargingStationBlock = new BlockChargingStation();
+			chargingStationBlock.setBlockName("blockChargingStation").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(chargingStationBlock, "blockChargingStation");
+		}
 
-		heatedFurnaceBlock = new BlockHeatedFurnace();
-		heatedFurnaceBlock.setBlockName("blockHeatedFurnace").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(heatedFurnaceBlock, "blockHeatedFurnace");
+		if (ConfigurationHandler.enabled("HeatedFurnace")) {
+			heatedFurnaceBlock = new BlockHeatedFurnace();
+			heatedFurnaceBlock.setBlockName("blockHeatedFurnace").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(heatedFurnaceBlock, "blockHeatedFurnace");
+		}
 
-		basicCoilBlock = new BlockBasicCoil();
-		basicCoilBlock.setBlockName("blockCoilBasic").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(basicCoilBlock, "blockCoilBasic");
+		if (ConfigurationHandler.enabled("Coils")) {
+			basicCoilBlock = new BlockBasicCoil();
+			basicCoilBlock.setBlockName("blockCoilBasic").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(basicCoilBlock, "blockCoilBasic");
 
-		lavaCoilBlock = new BlockLavaCoil();
-		lavaCoilBlock.setBlockName("blockCoilLava").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(lavaCoilBlock, "blockCoilLava");
+			lavaCoilBlock = new BlockLavaCoil();
+			lavaCoilBlock.setBlockName("blockCoilLava").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(lavaCoilBlock, "blockCoilLava");
 
-		basicDusterBlock = new BlockBasicDuster();
-		basicDusterBlock.setBlockName("blockDusterBasic").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(basicDusterBlock, "blockDusterBasic");
+			kineticCoil = new BlockKineticCoil();
+			kineticCoil.setBlockName("blockCoilKinetic").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(kineticCoil, "blockCoilKinetic");
+		}
 
-		semiAutomaticDusterBlock = new BlockSemiAutomaticDuster();
-		semiAutomaticDusterBlock.setBlockName("blockDusterSemiAutomatic").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(semiAutomaticDusterBlock, "blockDusterSemiAutomatic");
+		if (ConfigurationHandler.enabled("Duster")) {
+			basicDusterBlock = new BlockBasicDuster();
+			basicDusterBlock.setBlockName("blockDusterBasic").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(basicDusterBlock, "blockDusterBasic");
 
-		mechanicalDusterBlock = new BlockMechanicalDuster();
-		mechanicalDusterBlock.setBlockName("blockDusterMechanical").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(mechanicalDusterBlock, "blockDusterMechanical");
+			semiAutomaticDusterBlock = new BlockSemiAutomaticDuster();
+			semiAutomaticDusterBlock.setBlockName("blockDusterSemiAutomatic").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(semiAutomaticDusterBlock, "blockDusterSemiAutomatic");
 
-		kineticDusterBlock = new BlockKineticDuster();
-		kineticDusterBlock.setBlockName("blockDusterKinetic").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(kineticDusterBlock, "blockDusterKinetic");
+			mechanicalDusterBlock = new BlockMechanicalDuster();
+			mechanicalDusterBlock.setBlockName("blockDusterMechanical").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(mechanicalDusterBlock, "blockDusterMechanical");
 
-		kineticCoil = new BlockKineticCoil();
-		kineticCoil.setBlockName("blockCoilKinetic").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(kineticCoil, "blockCoilKinetic");
+			kineticDusterBlock = new BlockKineticDuster();
+			kineticDusterBlock.setBlockName("blockDusterKinetic").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(kineticDusterBlock, "blockDusterKinetic");
+		}
 
-		kebT1 = new BlockKineticEnergyBufferTier1();
-		kebT1.setBlockName("blockKEBT1").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(kebT1, ItemBlockKEB.class, "KEBT1");
+		if (ConfigurationHandler.enabled("KineticEnergyBuffer")) {
+			kebT1 = new BlockKineticEnergyBufferTier1();
+			kebT1.setBlockName("blockKEBT1").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(kebT1, ItemBlockKEB.class, "KEBT1");
 
-		kebT2 = new MultiBlockKEBT2();
-		kebT2.setBlockName("blockKEBT2").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(kebT2, "KEBT2");
+			kebT2 = new MultiBlockKEBT2();
+			kebT2.setBlockName("blockKEBT2").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(kebT2, "KEBT2");
 
-		kebT3Core = new MultiBlockKEBT3Core();
-		kebT3Core.setBlockName("blockKEBT3Core").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(kebT3Core, "KEBT3Core");
+			kebT3Core = new MultiBlockKEBT3Core();
+			kebT3Core.setBlockName("blockKEBT3Core").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(kebT3Core, "KEBT3Core");
 
-		kebT3Plating = new MultiBlockKEBT3Plating();
-		kebT3Plating.setBlockName("blockKEBT3Plating").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(kebT3Plating, "KEBT3Plating");
+			kebT3Plating = new MultiBlockKEBT3Plating();
+			kebT3Plating.setBlockName("blockKEBT3Plating").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(kebT3Plating, "KEBT3Plating");
+		}
 
-		refineryWalls = new MultiBlockRefineryWalls();
-		refineryWalls.setBlockName("blockRefineryWalls").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(refineryWalls, "refinerywals");
+		if (ConfigurationHandler.enabled("MultiBlockRefining")) {
+			refineryWalls = new MultiBlockRefineryWalls();
+			refineryWalls.setBlockName("blockRefineryWalls").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(refineryWalls, "refinerywals");
 
-		refineryValve = new MultiBlockRefineryValve();
-		refineryValve.setBlockName("blockRefineryValve").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(refineryValve, "refineryValve");
+			refineryValve = new MultiBlockRefineryValve();
+			refineryValve.setBlockName("blockRefineryValve").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(refineryValve, "refineryValve");
 
-		coolingTowerWalls = new MultiBlockCoolingTowerWalls();
-		coolingTowerWalls.setBlockName("blockCoolingTowerWalls").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(coolingTowerWalls, "blockCoolingTowerWalls)");
+			coolingTowerWalls = new MultiBlockCoolingTowerWalls();
+			coolingTowerWalls.setBlockName("blockCoolingTowerWalls").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(coolingTowerWalls, "blockCoolingTowerWalls)");
 
-		coolingTowerValve = new MultiBlockCoolingTowerValve();
-		coolingTowerValve.setBlockName("blockCoolingTowerValve").setCreativeTab(BuildcraftAdditions.bcadditions);
-		GameRegistry.registerBlock(coolingTowerValve, "blockCoolingTowerValve");
+			coolingTowerValve = new MultiBlockCoolingTowerValve();
+			coolingTowerValve.setBlockName("blockCoolingTowerValve").setCreativeTab(BuildcraftAdditions.bcadditions);
+			GameRegistry.registerBlock(coolingTowerValve, "blockCoolingTowerValve");
+		}
 
-		itemSorter = new BlockItemSorter();
-		itemSorter.setBlockName("blockItemSorter").setCreativeTab(BuildcraftAdditions.bcadditions);
+		if (ConfigurationHandler.enabled("ColorSorter")) {
+			itemSorter = new BlockItemSorter();
+			itemSorter.setBlockName("blockItemSorter").setCreativeTab(BuildcraftAdditions.bcadditions);
+		}
 
-		backpackStand = new BlockBackpackStand();
-		GameRegistry.registerBlock(backpackStand, "backpackStand");
+		if (ConfigurationHandler.enabled("KineticBackpack")) {
+			backpackStand = new BlockBackpackStand();
+			GameRegistry.registerBlock(backpackStand, "backpackStand");
+		}
 
 		if (VersionCheck.currentVersion.contains("@")) {
 			//only register testblock in dev environments
