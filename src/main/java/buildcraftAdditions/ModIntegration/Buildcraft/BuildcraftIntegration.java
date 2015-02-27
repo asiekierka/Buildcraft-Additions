@@ -47,7 +47,6 @@ public class BuildcraftIntegration {
 	public static void integrate() {
 		RefineryRecipeConverter.doYourThing();
 		Triggers.register();
-		StripesHandler.register();
 		addBCRecipes();
 		BuildcraftAdditions.proxy.addPowerplant();
 	}
@@ -75,6 +74,8 @@ public class BuildcraftIntegration {
 		BuilderAPI.schematicRegistry.registerSchematicBlock(ItemsAndBlocks.kebT3Plating, SchematicMulitblock.class);
 
 		BuilderAPI.schematicRegistry.registerSchematicBlock(ItemsAndBlocks.itemSorter, SchematicSorter.class);
+
+		StripesHandler.register();
 	}
 
 	private static void addBCRecipes() {
