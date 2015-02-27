@@ -90,7 +90,7 @@ public class BuildcraftIntegration {
 		addStickRecipe(ItemsAndBlocks.boneStick, 2000, "stickIron", Items.bone);
 		addStickRecipe(ItemsAndBlocks.flintStick, 2000, "stickIron", Items.flint);
 		addStickRecipe(ItemsAndBlocks.blazeStick, 4000, "stickQuartz", Items.blaze_rod);
-
+		addAssemblyRecipe("portableLaser", ItemsAndBlocks.portableLaser, 8000, "blockGlass", "gemDiamond", "stickBlaze", "stickBlaze", BCItems.LASER, ItemsAndBlocks.toolCore);
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("goldStick", "stickGold", null, ItemRedstoneChipset.Chipset.IRON));
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("diamondStick", "stickDiamond", "goldStick", ItemRedstoneChipset.Chipset.GOLD));
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("emeraldStick", "stickEmerald", "diamondStick", ItemRedstoneChipset.Chipset.DIAMOND));
@@ -250,7 +250,7 @@ public class BuildcraftIntegration {
 		if (upgrade == null) {
 			return;
 		}
-		addAssemblyRecipe("toolUpgrade" + upgrade.getType(), upgrade, 1000, new ItemStack(ItemsAndBlocks.toolCore), new ItemStack(Items.iron_ingot, 3), new ItemStack(Items.gold_ingot, 2));
+		addAssemblyRecipe("toolUpgrade" + upgrade.getType(), upgrade, 1000, ItemsAndBlocks.toolCore, "ingotIron", "ingotIron", "ingotIron", "ingotGold", "ingotGold");
 	}
 
 	private static void addAssemblyRecipe(String name, Item output, int power, Object... inputs) {
