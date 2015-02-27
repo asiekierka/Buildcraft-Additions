@@ -106,7 +106,7 @@ public class BuildcraftIntegration {
 		BuildcraftRecipeRegistry.integrationTable.addRecipe(new UpgradeRecipeStick("blazeStick", "stickBlaze", "redstoneStick", ItemRedstoneChipset.Chipset.RED));
 
 		if (ConfigurationHandler.enabled("MultiTools")) {
-			GameRegistry.addShapelessRecipe(new ItemStack(ItemsAndBlocks.itemKineticMultiTool), new ItemStack(ItemsAndBlocks.kineticTool, 1, OreDictionary.WILDCARD_VALUE));
+			addAssemblyRecipe("kineticTool", ItemsAndBlocks.itemKineticMultiTool, 8000, "gemDiamond", "gemDiamond", "gemDiamond", "stickIron", ItemsAndBlocks.toolCore);
 
 			BuildcraftRecipeRegistry.assemblyTable.addRecipe(Variables.MOD.ID + ":kineticTool", 8000, new ItemStack(ItemsAndBlocks.itemKineticMultiTool), new ItemStack(Items.diamond, 3), ItemsAndBlocks.ironStick, ItemsAndBlocks.toolCore);
 			addUpgradeRecipe(ItemsAndBlocks.toolUpgradeChainsaw);
