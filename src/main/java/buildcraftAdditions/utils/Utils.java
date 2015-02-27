@@ -8,6 +8,8 @@ package buildcraftAdditions.utils;
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
 
+import com.google.common.base.Strings;
+
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -75,6 +77,10 @@ public class Utils {
 		for (int i = 0; i < objects.length; i++)
 			objects[i] = localize(strings[i]);
 		return localizeFormatted(key, objects);
+	}
+
+	public static String decapitalizeFirstChar(String string) {
+		return !Strings.isNullOrEmpty(string) ? Character.toLowerCase(string.charAt(0)) + string.substring(1) : null;
 	}
 
 	public static void dropItemstack(World world, int x, int y, int z, ItemStack stack) {
