@@ -8,8 +8,6 @@ package buildcraftAdditions.utils;
  * http://buildcraftadditions.wordpress.com/wiki/licensing-stuff/
  */
 
-import com.google.common.base.Strings;
-
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -30,6 +28,8 @@ import buildcraft.api.transport.IPipeTile;
 
 import buildcraftAdditions.api.configurableOutput.EnumPriority;
 import buildcraftAdditions.tileEntities.varHelpers.SideConfiguration;
+
+import com.google.common.base.Strings;
 
 public class Utils {
 
